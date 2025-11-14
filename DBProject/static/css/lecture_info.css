@@ -1,0 +1,131 @@
+:root {
+  --brand: #4C5CFF;
+  --border-strong: #2600FF;
+  --badge-bg: rgba(38, 0, 255, 0.78);
+  --badge-border: rgba(91, 63, 255, 0.78);
+  --badge-text: #5651E9;
+  --ink: #000000;
+  --line-soft: #9F9C9C;
+}
+
+/* 페이지 래퍼 */
+.lecture-info-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* 카드 박스 */
+.lecture-card {
+  position: relative; /* ← X 버튼 기준점 */
+  width: 720px;
+  max-width: 90%;
+  background: #FFFFFF;
+  border: 0.5px solid var(--border-strong);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 24px 32px 32px;
+}
+
+/* 헤더 */
+.lecture-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 왼쪽 배지 */
+.lecture-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lecture-card__badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 9999px;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  font-size: 11px;
+  line-height: 13px;
+  color: #FFFFFF;
+}
+
+.lecture-card__badge-label {
+  font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 13px;
+  color: var(--badge-text);
+}
+
+/* 제목 */
+.lecture-card__title {
+  margin: 0;
+  margin-left: 24px;
+  font-family: 'Poppins', 'Noto Sans KR', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink);
+}
+
+/* X 버튼 – 카드 안 우상단 */
+.lecture-card__close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* 구분선 */
+.lecture-card__divider {
+  margin: 16px 0 20px;
+  border: none;
+  border-top: 0.5px solid var(--line-soft);
+}
+
+/* 본문 */
+.lecture-card__body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lecture-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.lecture-row__label {
+  min-width: 80px;
+  font-family: 'Poppins', 'Noto Sans KR', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink);
+  margin: 0;
+}
+
+.lecture-row__value {
+  margin: 0;
+  font-family: 'Poppins', 'Noto Sans KR', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--ink);
+}
