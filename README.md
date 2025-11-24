@@ -126,4 +126,6 @@ DORO-LMS/
 | Auth        | Django Auth, Email 인증 |
 | 배포        | (추후작성)              |
 
+## 유의 사항 migrations 파일 중 init 파일을 제외한 모든 파일을 삭제하고 makemigrations -> migrate 해야함
+
 
