@@ -14,7 +14,7 @@ DORO-LMS는 학생, 강사, 관리자 역할별로 강의, 공지사항, 진단 
 - 🔒 **보안**: 민감 정보는 `.env` 파일로 관리
 
 ## 📁 폴더 구조
-
+'''
 DORO-LMS/
 ├── DBProject/
 │   ├── settings.py
@@ -58,7 +58,7 @@ DORO-LMS/
 ├── .gitignore
 ├── .env
 └── README.md
-
+'''
 ## 🚀 설치 및 실행
 
 1. **저장소 클론**
