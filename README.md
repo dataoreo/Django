@@ -15,7 +15,7 @@ DORO-LMS는 학생, 강사, 관리자 역할별로 강의, 공지사항, 진단 
 
 ## 📁 폴더 구조
 
-'''DORO-LMS/
+DORO-LMS/
 ├── DBProject/
 │   ├── settings.py
 │   ├── urls.py
@@ -57,7 +57,7 @@ DORO-LMS는 학생, 강사, 관리자 역할별로 강의, 공지사항, 진단 
 ├── requirements.txt
 ├── .gitignore
 ├── .env
-└── README.md'''
+└── README.md
 
 ## 🚀 설치 및 실행
 
