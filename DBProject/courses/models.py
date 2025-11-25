@@ -6,7 +6,10 @@ class Class(models.Model):
     class_id = models.AutoField(primary_key=True)
     class_name = models.CharField(max_length=100, verbose_name="강의명")
     # 강사만 선택 가능하도록 제한
+<<<<<<< HEAD
     start_date = models.DateField(verbose_name="강의 시작일", null=True, blank=True)
+=======
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
     instructor = models.ForeignKey(User, on_delete=models.PROTECT, limit_choices_to={'role': 'instructor'}, verbose_name="강사")
 
     class Meta:
@@ -67,7 +70,11 @@ class SurveyQuestion(models.Model):
     question_id = models.AutoField(primary_key=True)
     survey = models.ForeignKey(SatisfactionSurvey, on_delete=models.CASCADE, verbose_name="설문조사")
     question = models.CharField(max_length=255, verbose_name="질문 내용")
+<<<<<<< HEAD
     question_type = models.CharField(max_length=20, verbose_name="질문 유형")  # rating, text_area
+=======
+    question_type = models.CharField(max_length=20, verbose_name="질문 유형")
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
     question_num = models.IntegerField(verbose_name="질문 번호")
 
     class Meta:

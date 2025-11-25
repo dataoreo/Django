@@ -58,6 +58,10 @@ class CommunityPost(models.Model):
     def __str__(self):
         return self.post_title
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
 # 커뮤니티 댓글
 class CommunityComment(models.Model):
     comment_id = models.AutoField(primary_key=True)

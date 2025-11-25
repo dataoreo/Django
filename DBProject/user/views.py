@@ -1,14 +1,26 @@
+<<<<<<< HEAD
 # user/views.py (정리 완료된 코드)
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm  # Django 내장 로그인 폼
 from .forms import SignupForm, TermsForm
 from django.contrib.auth.decorators import login_required, user_passes_test
+=======
+# user/views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm  # Django 내장 로그인 폼
+from .forms import SignupForm, TermsForm
+from django.contrib.auth.decorators import login_required
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
 from .forms import DimcTestForm # 방금 만든 폼을 import
 from .models import DIMC,User # DIMC 모델을 import
 from .forms import UserUpdateForm, DIMCForm
 from django.conf import settings
+<<<<<<< HEAD
 from courses.models import Class, MyClass, MyClassStatus, SatisfactionSurvey
+=======
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
 
 def term_view(request):
     """약관 동의 페이지 뷰"""
@@ -218,7 +230,13 @@ def community_view(request):
     return render(request, 'user/community.html')
 
 
+<<<<<<< HEAD
 # 🚨 [삭제됨] courses_view 함수는 이제 사용되지 않습니다.
+=======
+@login_required
+def courses_view(request):
+    return render(request, 'user/courses.html')
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
 
 
 def find_id_view(request):
@@ -242,6 +260,7 @@ def find_id_view(request):
                 found_email = f"{masked_username}@{domain}"
 
     context = {'found_email': found_email}
+<<<<<<< HEAD
     return render(request, 'user/find_id.html', context)
 
 
@@ -315,3 +334,6 @@ def lecture_info_view(request, class_id):
         'course': course
     }
     return render(request, 'user/lecture_info.html', context)
+=======
+    return render(request, 'user/find_id.html', context)
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1

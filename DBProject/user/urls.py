@@ -31,11 +31,18 @@ urlpatterns = [
     path('DIMC_archive', views.DIMC_archive_view, name='DIMC_archive'),
 
     path('community/', views.community_view, name='community' ),
+<<<<<<< HEAD
     path('course/', views.dashboard_view, name='dashboard' ),
     path('calendar/', views.calendar_view, name='main_calendar'),
     path('course/info/<int:class_id>', views.lecture_info_view, name='lecture_info'),
     path('course/register/', views.course_registration_view, name='course_register'),
     path('archive/instructor/', views.instructor_archive_view, name='instructor_archive'),
+=======
+    path('course/', views.courses_view, name='courses' ),
+
+
+
+>>>>>>> 71c388b42e83a73c27dad5464fc55511371a06b1
 
     path('find_id/', views.find_id_view, name='find_id'),
 
