@@ -8,3 +8,4 @@
 /dataSources.local.xml
 # 캐시
 /__pycache__/
+*.pyc
