@@ -1,50 +1,55 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}공지사항 삭제 | DORO LMS{% endblock %}
+{% block title %}공지 삭제 | DORO LMS{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/notice_delete.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <div class="hero-inner">
-    <h1 class="hero-title">공지사항 삭제</h1>
-  </div>
-</section>
+<div id="canvas" class="notice-delete-page">
 
-<main class="card-wrap">
-  <div class="card-inner">
-    <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px 20px;">
+  <!-- 중앙 삭제 확인 카드 (lecture_info 느낌) -->
+  <section class="notice-delete-card"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="notice-delete-title">
 
-      <div style="font-size: 64px; margin-bottom: 20px;">⚠️</div>
-
-      <h2 style="margin-bottom: 20px; color: #dc3545; font-size: 24px;">
-        정말 삭제하시겠습니까?
-      </h2>
-
-      <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-        <p style="font-size: 18px; font-weight: 600; color: #212529; margin-bottom: 10px;">
-          {{ notice.title }}
-        </p>
-        <p style="color: #6c757d; font-size: 14px;">
-          작성자: {{ notice.author.name }} | 조회수: {{ notice.views }}
-        </p>
-      </div>
-
-      <p style="color: #dc3545; margin-bottom: 30px; font-weight: 500;">
-        삭제된 공지사항은 복구할 수 없습니다.
-      </p>
-
-      <form method="post" style="display: inline;">
-        {% csrf_token %}
-        <div style="display: flex; gap: 10px; justify-content: center;">
-          <a href="{% url 'board:notice_detail' notice.notice_id %}" style="display: inline-block; padding: 12px 24px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px; font-weight: 500;">
-            취소
-          </a>
-          <button type="submit" style="padding: 12px 24px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 500;">
-            삭제
-          </button>
-        </div>
-      </form>
+    <!-- 아이콘 -->
+    <div class="notice-delete-icon-circle">
+      <span class="notice-delete-icon-mark">!</span>
     </div>
-  </div>
-</main>
+
+    <!-- 텍스트 -->
+    <h2 id="notice-delete-title" class="notice-delete-title">
+      정말<br>삭제 하시겠습니까?
+    </h2>
+    <p class="notice-delete-desc">
+      삭제 후에는 되돌릴 수 없습니다.
+    </p>
+
+    <!-- 버튼 영역 -->
+    <form method="post"
+          action="{% url 'board:notice_delete' notice.notice_id %}"
+          class="notice-delete-form">
+      {% csrf_token %}
+      <div class="notice-delete-actions">
+        <!-- 예: 실제 삭제 -->
+        <button type="submit"
+                class="notice-delete-btn notice-delete-btn--yes">
+          예
+        </button>
+
+        <!-- 아니요: 상세로 복귀 -->
+        <a href="{% url 'board:notice_detail' notice.notice_id %}"
+           class="notice-delete-btn notice-delete-btn--no">
+          아니요
+        </a>
+      </div>
+    </form>
+
+  </section>
+
+</div>
 {% endblock %}

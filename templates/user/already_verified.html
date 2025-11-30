@@ -1,11 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>이미 인증됨</title>
-</head>
-<body>
-    <h2>이미 인증된 계정입니다</h2>
-    <p>이메일 인증이 이미 완료되었습니다.</p>
-    <a href="{% url 'user:login' %}">로그인하기</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}이미 인증된 계정 | DORO LMS{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/already_verified.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">이메일 인증</h1>
+  </div>
+</section>
+
+<main class="card-wrap">
+  <div class="card-inner">
+
+    <section class="verified-card">
+      <div class="icon-wrap">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" 
+             stroke="#4C5CFF" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="9 12 12 15 17 10"></polyline>
+        </svg>
+      </div>
+
+      <h2 class="headline">이미 인증된 계정입니다</h2>
+      <p class="subtext">해당 이메일은 이미 인증이 완료된 상태입니다.</p>
+
+      <div class="cta">
+        <a href="{% url 'user:login' %}" class="btn-primary">로그인하기</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+{% endblock %}

@@ -1,50 +1,140 @@
 :root{
-  --line:#CBC6C6; --ink:#000; --muted:#717070; --btn-purple:#5651E9;
-  --danger:#b91c1c; --mypage-blue:rgba(75,184,251,0.9);
-  --content-top:0px;
-}
-.wrapper{ padding:0 !important; }
-
-*{box-sizing:border-box}
-html,body{margin:0;background:#fff;-webkit-font-smoothing:antialiased}
-body{font-family:'Inter','Noto Sans KR',system-ui,Segoe UI,Roboto,Arial,sans-serif}
-
-#canvas{ position:relative; width:1440px; min-height:900px; margin:0 auto; background:#fff; }
-
-/* 히어로 */
-#bgMypage{ position:absolute; left:0; top:var(--content-top); width:1440px; height:220px; background:var(--mypage-blue); }
-#pageTitle{
-  position:absolute; left:215px; top:calc(var(--content-top) + 120px);
-  width:600px; font-size:48px; line-height:58px; font-weight:400; color:#fff; white-space:nowrap;
+  --border-strong:#2600FF;
+  --ink:#000000;
+  --danger-circle:#FF0004;
+  --danger-circle-border:rgba(255,63,66,0.78);
+  --btn-yes:#2600FF;
+  --btn-no:rgba(255,0,4,0.78);
 }
 
-/* 좌측 메뉴 (마이페이지와 동일) */
-#menuTitle{
-  position:absolute; left:215px; top:calc(var(--content-top) + 260px);
-  font-size:36px; line-height:44px; color:var(--ink);
-}
-#menuBox{ position:absolute; left:215px; top:calc(var(--content-top) + 321px); width:241px; height:716px; background:#fff; border:1px solid var(--line); border-radius:4px; }
-#menuLine1{ position:absolute; left:214.99px; top:calc(var(--content-top) + 380.5px); width:241.02px; border-top:1px solid var(--line); }
-#menuLine2{ position:absolute; left:215px; top:calc(var(--content-top) + 439.5px); width:241.02px; border-top:1px solid var(--line); }
-#menuItem1{ position:absolute; left:238px; top:calc(var(--content-top) + 343px); font-size:20px; color:var(--ink); text-decoration:none; }
-#menuItem2{ position:absolute; left:236px; top:calc(var(--content-top) + 399px); font-size:20px; color:var(--ink); word-break:keep-all; text-decoration:none; }
+/* 마이페이지 레이아웃(mypage.css)을 그대로 쓰되,
+   우측 카드(확인 박스)만 이 파일에서 스타일링한다. */
 
-/* 우측 확인 카드 */
+/* 우측 탈퇴 확인 카드 – infoBox / withdrawBox 와 같은 컬럼에 위치 */
 #confirmBox{
-  position:absolute; left:490px; top:calc(var(--content-top) + 321px);
-  width:685px; min-height:220px; background:#fff; border:1px solid var(--line);
-  border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.06); padding:24px;
-}
-.confirmTitle{ font-size:22px; font-weight:700; color:#111827; margin-bottom:8px; }
-.confirmText{ font-size:15px; color:#4b5563; line-height:1.6; }
-.confirmActions{ margin-top:18px; display:flex; gap:10px; justify-content:flex-end; align-items:center; }
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  height:38px; padding:0 18px; border-radius:999px; font-weight:700; font-size:14px;
-  border:1.5px solid #cbd5e1; background:#fff; color:#334155; text-decoration:none; cursor:pointer;
-}
-.btn:hover{ background:#f3f6fb; }
-.btn.danger{ border-color:var(--danger); color:#fff; background:var(--danger); }
-.btn.danger:hover{ filter:brightness(0.95); }
+  position:absolute;
+  left:490px;
+  top:calc(var(--content-top) + 321px);  /* mypage의 infoBox top 과 동일 */
+  width:685px;
+  min-height:260px;
 
-#brandWrap,#banner,#navLinks,#greeting{ display:none !important; }
+  background:#FFFFFF;
+  border:0.5px solid var(--border-strong);
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+  border-radius:10px;
+
+  padding:32px 40px 28px;
+  box-sizing:border-box;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:16px;
+}
+
+/* 상단 아이콘 영역 */
+#confirmBox .icon-wrap{
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+}
+#confirmBox .icon-circle{
+  box-sizing:border-box;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--danger-circle);
+  border:1px solid var(--danger-circle-border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+#confirmBox .icon-mark{
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:700;
+  font-size:24px;
+  line-height:1;
+  color:#FFFFFF;
+  text-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+
+/* 제목/본문 텍스트 */
+#confirmBox .confirmTitle{
+  margin:0;
+  font-family:'Poppins','Noto Sans KR',system-ui,sans-serif;
+  font-weight:700;
+  font-size:18px;
+  line-height:26px;
+  color:var(--ink);
+}
+#confirmBox .confirmText{
+  margin:0;
+  font-family:'Poppins','Noto Sans KR',system-ui,sans-serif;
+  font-weight:400;
+  font-size:13px;
+  line-height:20px;
+  color:var(--ink);
+}
+
+/* 버튼 영역 */
+#confirmBox .confirmActions{
+  margin-top:12px;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  align-items:center;
+}
+#confirmBox .confirmActions form{
+  margin:0;
+}
+
+/* 공통 버튼 */
+#confirmBox .btn{
+  min-width:64px;
+  height:32px;
+  padding:0 14px;
+  border-radius:6px;
+  border:1px solid transparent;
+  font-family:'Poppins','Noto Sans KR',system-ui,sans-serif;
+  font-weight:600;
+  font-size:13px;
+  line-height:32px;
+  text-align:center;
+  cursor:pointer;
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 취소 버튼 – 흰 배경, 파랑 테두리 */
+#confirmBox .btn.cancel{
+  background:#FFFFFF;
+  color:var(--btn-yes);
+  border-color:var(--btn-yes);
+}
+
+/* 탈퇴 버튼 – 빨간 배경 */
+#confirmBox .btn.danger{
+  background:var(--btn-no);
+  color:#FFFFFF;
+  border-color:var(--btn-no);
+}
+
+/* 반응형 – 화면 가로 줄어들면 카드 폭/위치 축소 */
+@media (max-width:1024px){
+  #confirmBox{
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+  }
+}
+@media (max-width:768px){
+  #confirmBox{
+    top:calc(var(--content-top) + 260px);
+    padding:24px 20px 20px;
+  }
+}

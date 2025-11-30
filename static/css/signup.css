@@ -243,6 +243,11 @@ form > .errorlist {
   cursor: not-allowed;
 }
 
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(76, 92, 255, 0.3);
+  outline-offset: 2px;
+}
+
 /* * 📱 5️⃣ 반응형 가이드
  */
 @media (max-width: 768px) {

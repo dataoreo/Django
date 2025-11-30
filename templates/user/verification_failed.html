@@ -1,12 +1,38 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>인증 실패</title>
-</head>
-<body>
-    <h2>이메일 인증에 실패했습니다</h2>
-    <p>유효하지 않은 인증 링크입니다.</p>
-    <a href="{% url 'index' %}">메인 페이지로 이동</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}이메일 인증 실패 | DORO LMS{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/verification_failed.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="verify-wrapper">
+
+  <!-- 상단 탭 (시각적만, 동작 X) -->
+  <div class="verify-tabs">
+    <button type="button" class="verify-tab">DORO ID찾기</button>
+    <button type="button" class="verify-tab is-active">비밀번호찾기</button>
+  </div>
+  <div class="verify-divider"></div>
+
+  <!-- 본문 카드 -->
+  <section class="verify-card">
+    <h2 class="verify-title">이메일 인증에 실패했습니다.</h2>
+    <p class="verify-sub">
+      유효하지 않은 인증 링크이거나, 이미 사용이 완료된 링크입니다.
+    </p>
+    <p class="verify-helper">
+      로그인 화면에서 다시 인증 메일을 요청하거나,<br>
+      문제가 계속되면 관리자에게 문의해 주세요.
+    </p>
+
+    <div class="verify-actions">
+      <a href="{% url 'index' %}" class="btn btn-outline">메인으로</a>
+      <a href="{% url 'user:login' %}" class="btn btn-solid">로그인 화면으로</a>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

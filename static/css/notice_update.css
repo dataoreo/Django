@@ -1,0 +1,146 @@
+/* infoBox 내부(입력 패널)만 스타일링한다.
+   위치/좌표, 카드 크기는 mypage.css가 담당한다. */
+
+#infoBox{
+  padding:20px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  background:#ffffff;
+  box-sizing:border-box;
+}
+
+/* 카드 제목 */
+#infoBox .card-title{
+  margin:6px 2px 14px 2px;
+  font-size:18px;
+  font-weight:700;
+  color:#111111;
+}
+
+/* 회색 패널 전체 레이아웃 */
+#infoBox .panel{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* 각 행(연락처/이메일/주소/생년월일) */
+#infoBox .row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  background:#f7f9fc;
+}
+
+/* 라벨/내용 영역 */
+#infoBox .lbl{
+  width:110px;
+  color:#111111;
+  font-weight:600;
+}
+#infoBox .main{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:36px;
+}
+
+/* 기본: 마스킹만 보이고 입력은 숨김 */
+#infoBox .masked{
+  display:inline-block;
+  color:#111111;
+}
+#infoBox .text,
+#infoBox .inputs{
+  display:none;
+}
+
+/* editing 상태: 입력 보이고 마스킹 숨김 */
+#infoBox .row.editing .masked{
+  display:none;
+}
+#infoBox .row.editing .text{
+  display:block;
+}
+#infoBox .row.editing .inputs{
+  display:flex;
+}
+
+/* 텍스트 입력 공통 */
+#infoBox .text{
+  flex:1;
+  height:36px;
+  padding:0 12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#ffffff;
+  outline:none;
+}
+#infoBox .wide{
+  width:100%;
+}
+
+/* 숫자 입력(전화, 생일) */
+#infoBox .inputs input{
+  width:60px;
+  height:36px;
+  padding:0 8px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#ffffff;
+  outline:none;
+}
+#infoBox .inputs.phone input.ph:nth-child(1){
+  width:70px;
+}
+#infoBox .sep{
+  opacity:0.6;
+}
+
+/* "수정" 미니 버튼 */
+#infoBox .btn-mini{
+  height:28px;
+  padding:0 10px;
+  border:1px solid #cbd5e1;
+  border-radius:999px;
+  background:#ffffff;
+  font-size:12px;
+  cursor:pointer;
+}
+#infoBox .btn-mini[disabled]{
+  opacity:0.5;
+  cursor:default;
+}
+
+/* 저장 버튼 영역 */
+#infoBox .form-actions{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:8px;
+}
+#infoBox .btn-save{
+  height:34px;
+  padding:0 14px;
+  border:0;
+  border-radius:999px;
+  background:#4f46e5;
+  color:#ffffff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* 접근성용 숨김 인풋 */
+#infoBox .sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  border:0;
+}

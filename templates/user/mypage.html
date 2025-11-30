@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}?v=20251128_2">
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
 
     <div id="panel"></div>
 
-    <!-- 연락처 (하이픈 유무 상관없이 마지막 4자리만 노출) -->
+    <!-- 연락처 -->
     <div id="lblPhone" class="rowLbl">연락처</div>
     <div id="valPhone" class="rowVal">
       <span id="phone">
@@ -56,7 +56,7 @@
       </span>
     </div>
 
-    <!-- 주소 (앞 14글자만 표시) -->
+    <!-- 주소 -->
     <div id="lblAddr" class="rowLbl">주소</div>
     <div id="valAddr" class="rowVal">
       <span id="addr">
@@ -68,7 +68,7 @@
       </span>
     </div>
 
-    <!-- 생년월일 (연도만 노출) -->
+    <!-- 생년월일 -->
     <div id="lblBirth" class="rowLbl">생년월일</div>
     <div id="valBirth" class="rowVal">
       <span id="birth">

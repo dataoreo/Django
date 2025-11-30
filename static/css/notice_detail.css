@@ -1,0 +1,355 @@
+/* ================================
+   DORO 기본 토큰
+   ================================ */
+:root{
+  --bg-page:#F9FAFB;
+  --brand:#4C5CFF;
+  --hero-top:#4C8DFF;
+  --hero-bot:#4C5CFF;
+  --ink:#111827;
+  --muted:#6B7280;
+  --line:#E5E7EB;
+  --shadow:0 18px 45px rgba(15,23,42,0.12);
+}
+
+/* base 패딩 간섭 제거 */
+.wrapper{ padding:0 !important; }
+
+*{ box-sizing:border-box; }
+html,body{
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  font-family:'Inter','Noto Sans KR',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg-page);
+}
+
+/* 이 페이지 캔버스 */
+#canvas.notice-detail{
+  min-height:100vh;
+  background:transparent;
+}
+
+/* ================================
+   Hero
+   ================================ */
+
+.hero{
+  width:100%;
+  background:linear-gradient(135deg,var(--hero-top),var(--hero-bot));
+  color:#fff;
+}
+.hero--notice{
+  padding:80px 0 110px;
+}
+.hero__inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.hero__title{
+  margin:0 0 8px;
+  font-size:48px;
+  line-height:1.2;
+  font-weight:600;
+  color:#ffffff;
+}
+.hero__subtitle{
+  margin:0;
+  font-size:16px;
+  line-height:1.5;
+  color:rgba(255,255,255,0.9);
+}
+
+/* ================================
+   메인 레이아웃 + 카드
+   ================================ */
+
+.notice-detail-layout{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px 96px;
+  position:relative;
+  z-index:1;
+}
+
+.notice-detail-card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  margin-top:-56px;
+  overflow:hidden;
+}
+
+/* 상단 바 (타입/대상/제목/목록) */
+.notice-detail-card__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 24px;
+  background:#FFF8F8;
+  border-bottom:1px solid #F3F4F6;
+}
+
+.notice-detail-top__left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.notice-detail-badges{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* 뱃지 */
+.notice-detail-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:63px;
+  height:29px;
+  padding:4px 14px;
+  border-radius:20px;
+  background:#FFFFFF;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:14px;
+  line-height:19px;
+  box-sizing:border-box;
+}
+.notice-detail-badge--type{
+  border:1px solid #E65D64;
+  color:#FF0037;
+}
+.notice-detail-badge--role{
+  border:1px solid #1ACDED;
+  color:#2600FF;
+}
+.notice-detail-badge--maint{
+  border:1px solid #15AC43;
+  color:#0A7637;
+}
+
+.notice-detail-title{
+  margin:0;
+  font-size:16px;
+  font-weight:500;
+  color:#111827;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* 상단 우측 : 목록 버튼 */
+.notice-detail-top__right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+  color:#6B7280;
+}
+
+.notice-detail-btn-list{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:64px;
+  height:32px;
+  padding:0 14px;
+  border-radius:10px;
+  border:1px solid #111827;
+  background:rgba(255,255,255,0.9);
+  font-size:14px;
+  font-weight:400;
+  color:#111827;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+/* 작성자/작성일/조회수 줄 */
+.notice-detail-card__meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 24px;
+  border-bottom:1px solid #E5E7EB;
+  font-size:14px;
+  color:#111827;
+}
+
+.notice-detail-meta__left{
+  display:flex;
+  gap:4px;
+}
+.notice-detail-meta__label{
+  font-weight:700;
+}
+.notice-detail-meta__value{
+  font-weight:400;
+}
+
+.notice-detail-meta__right{
+  display:flex;
+  gap:16px;
+}
+.notice-detail-meta__right span{
+  white-space:nowrap;
+}
+
+/* 본문 */
+.notice-detail-card__body{
+  padding:16px 24px 20px;
+  border-bottom:1px solid #E5E7EB;
+}
+
+.notice-detail-body__box{
+  border:1px solid #726D6D;
+  border-radius:2px;
+  min-height:260px;
+  padding:16px 18px;
+  font-size:14px;
+  line-height:1.7;
+  color:#111827;
+  overflow:auto;
+}
+
+/* 하단 버튼 (삭제/수정) */
+.notice-detail-card__actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  padding:14px 24px 18px;
+}
+
+.notice-detail-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:64px;
+  height:38px;
+  padding:0 18px;
+  border-radius:10px;
+  border:none;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+.notice-detail-btn--danger{
+  background:#E9516A;
+  color:#FFFFFF;
+}
+.notice-detail-btn--primary{
+  background:#5651E9;
+  color:#FFFFFF;
+}
+
+/* ================================
+   삭제 확인 팝업 (중앙, 배경 투명)
+   ================================ */
+
+.notice-delete-layer{
+  position:fixed;
+  inset:0;
+  z-index:1600;
+  display:none;           /* 기본 숨김 */
+  align-items:center;
+  justify-content:center;
+  background:transparent; /* 배경색 없음 */
+}
+
+.notice-delete-layer.is-visible{
+  display:flex;
+}
+
+.notice-delete-dialog{
+  box-sizing:border-box;
+  width:278px;
+  height:236px;
+  background:#FFFFFF;
+  border:0.5px solid #2600FF;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+/* 빨간 동그라미 아이콘 */
+.notice-delete-icon-circle{
+  box-sizing:border-box;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:rgba(255,0,4,0.78);
+  border:1px solid rgba(255,63,66,0.78);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+
+.notice-delete-icon-mark{
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:700;
+  font-size:24px;
+  line-height:29px;
+  color:#FFFFFF;
+  text-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+
+/* 텍스트 */
+.notice-delete-text{
+  margin:0;
+  font-family:'Poppins','Inter','Noto Sans KR',system-ui,sans-serif;
+  font-weight:700;
+  font-size:14px;
+  line-height:21px;
+  color:#000000;
+  text-align:center;
+}
+.notice-delete-text--line1{
+  margin-top:6px;
+}
+.notice-delete-text--line2{
+  margin-top:-4px;
+}
+
+/* 버튼 영역 */
+.notice-delete-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:8px;
+}
+
+.notice-delete-btn{
+  width:64px;
+  height:28px;
+  border:none;
+  border-radius:5px;
+  font-family:'Poppins','Inter','Noto Sans KR',system-ui,sans-serif;
+  font-weight:700;
+  font-size:12px;
+  line-height:16px;
+  color:#FFFFFF;
+  cursor:pointer;
+}
+
+.notice-delete-btn--yes{
+  background:#2600FF;
+}
+
+.notice-delete-btn--no{
+  background:rgba(255,0,4,0.78);
+}
+
+/* 반응형: 화면 좁을 때 살짝 줄이기 */
+@media (max-width:480px){
+  .notice-delete-dialog{
+    width:240px;
+    height:210px;
+  }
+}

@@ -3,51 +3,151 @@
 
 {% block title %}공지사항 작성 | DORO LMS{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/notice_create.css' %}">
+{% endblock %}
+
 {% block content %}
-<section class="hero">
-  <div class="hero-inner">
-    <h1 class="hero-title">공지사항 작성</h1>
-  </div>
-</section>
+<div id="canvas" class="notice-admin-update">
 
-<main class="card-wrap">
-  <div class="card-inner">
-    <form method="post" style="max-width: 800px; margin: 0 auto;">
-      {% csrf_token %}
+  <!-- 🎨 Hero : 공지사항 -->
+  <section class="hero hero--notice">
+    <div class="hero__inner">
+      <h1 class="hero__title">공지사항</h1>
+      <p class="hero__subtitle">
+        관리자 공지 작성 화면입니다. 공지/점검 유형과 대상을 선택하고 내용을 작성해 주세요.
+      </p>
+    </div>
+  </section>
 
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; margin-bottom: 8px; font-weight: 600;">{{ form.title.label }}</label>
-        {{ form.title }}
-        {% if form.title.errors %}
-          <p style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ form.title.errors }}</p>
+  <!-- 📄 공지 작성 카드 -->
+  <main class="notice-update-layout" role="main" aria-label="공지 작성">
+    <section class="card notice-update-card">
+
+      <header class="notice-update-card__header">
+        <h2 class="notice-update-card__title">공지 작성</h2>
+      </header>
+
+      <form method="post" class="notice-update-form">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div style="margin-bottom:12px; color:#DC2626; font-size:13px;">
+          {% for err in form.non_field_errors %}
+            <div>{{ err }}</div>
+          {% endfor %}
+        </div>
         {% endif %}
-      </div>
 
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; margin-bottom: 8px; font-weight: 600;">{{ form.content.label }}</label>
-        {{ form.content }}
+        <!-- 1줄: 공지/점검 + 대상 + 제목 -->
+        <div class="notice-update-row">
+
+          <!-- 공지/점검 선택 (UI용) -->
+          <div class="field-group">
+            <label for="notice_type" class="field-label">분류</label>
+            <select id="notice_type" name="notice_type" class="field-control field-select">
+              <option value="NOTICE">공지</option>
+              <option value="MAINT">점검</option>
+            </select>
+          </div>
+
+          <!-- 전체/학생/강사 선택 (UI용) -->
+          <div class="field-group">
+            <label for="notice_target" class="field-label">대상</label>
+            <select id="notice_target" name="notice_target" class="field-control field-select">
+              <option value="ALL">전체</option>
+              <option value="STUDENT">학생</option>
+              <option value="TEACHER">강사</option>
+            </select>
+          </div>
+
+          <!-- 제목 입력 -->
+          <div class="field-group field-group--grow">
+            <label for="notice_title" class="field-label">제목</label>
+            <input
+              id="notice_title"
+              name="title"
+              type="text"
+              class="field-control field-input"
+              placeholder="공지 제목을 입력하세요."
+              value="{{ form.title.value|default_if_none:'' }}"
+            >
+            {% if form.title.errors %}
+              <div style="color:#DC2626; font-size:12px; margin-top:4px;">
+                {% for err in form.title.errors %}{{ err }}{% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- 2줄: 편집기 영역 (툴바 + 본문) -->
+        <div class="editor-shell">
+          <div class="editor-toolbar">
+            <div class="editor-toolbar__left" aria-hidden="true">
+              <img src="{% static 'img/editor_toolbar_sample.png' %}"
+                   alt=""
+                   class="editor-toolbar__img">
+            </div>
+          </div>
+
+          <textarea
+            id="notice_content"
+            name="content"
+            class="editor-body"
+            placeholder="공지 내용을 입력하세요."
+          >{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
         {% if form.content.errors %}
-          <p style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ form.content.errors }}</p>
+          <div style="color:#DC2626; font-size:12px; margin-top:4px;">
+            {% for err in form.content.errors %}{{ err }}{% endfor %}
+          </div>
         {% endif %}
-      </div>
 
-      <div style="margin-bottom: 30px;">
-        <label style="display: flex; align-items: center; gap: 8px;">
-          {{ form.is_pinned }}
-          <span>{{ form.is_pinned.label }}</span>
-        </label>
-      </div>
+        <!-- 상단 고정 체크 -->
+        <div style="margin-top:12px;">
+          <label style="display:flex; align-items:center; gap:8px; font-size:14px;">
+            <input type="checkbox"
+                   name="is_pinned"
+                   {% if form.is_pinned.value %}checked{% endif %}>
+            <span>상단 고정</span>
+          </label>
+          {% if form.is_pinned.errors %}
+            <div style="color:#DC2626; font-size:12px; margin-top:4px;">
+              {% for err in form.is_pinned.errors %}{{ err }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
 
-      <div style="display: flex; gap: 10px; justify-content: flex-end;">
-        <!-- 👇 수정: notice_list → board:notice_list -->
-        <a href="{% url 'board:notice_list' %}" style="display: inline-block; padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
-          취소
-        </a>
-        <button type="submit" style="padding: 10px 20px; background-color: #0d6efd; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 500;">
-          작성하기
-        </button>
-      </div>
-    </form>
-  </div>
-</main>
+        <!-- 하단 버튼 -->
+        <div class="notice-update-footer">
+          <a href="{% url 'board:notice_list' %}"
+             class="btn-primary"
+             style="background:#6B7280; margin-right:8px;">
+            취소
+          </a>
+          <button type="submit" class="btn-primary notice-update__submit">
+            작성 완료
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- 📌 우측 고정 배너 -->
+  <aside class="support-banner" aria-label="고객지원 바로가기">
+    <button type="button" class="support-banner__item">
+      <span class="support-banner__icon support-banner__icon--chat"></span>
+      <span class="support-banner__label">챗봇<br>바로가기</span>
+    </button>
+    <button type="button" class="support-banner__item">
+      <span class="support-banner__icon support-banner__icon--phone"></span>
+      <span class="support-banner__label">상담 전화<br>바로가기</span>
+    </button>
+    <button type="button" class="support-banner__item">
+      <span class="support-banner__icon support-banner__icon--qna"></span>
+      <span class="support-banner__label">1:1 문의<br>바로가기</span>
+    </button>
+  </aside>
+
+</div>
 {% endblock %}

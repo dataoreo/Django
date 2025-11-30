@@ -1,0 +1,317 @@
+/* ================================
+   DORO 디자인 시스템 기본 토큰
+   ================================ */
+:root{
+  --bg-page:#F9FAFB;
+  --brand:#4C5CFF;
+  --hero-top:#4C8DFF;
+  --hero-bot:#4C5CFF;
+  --ink:#111827;
+  --muted:#6B7280;
+  --line:#E5E7EB;
+  --shadow:0 18px 45px rgba(15,23,42,0.12);
+}
+
+/* base의 패딩 간섭 제거 */
+.wrapper{ padding:0 !important; }
+
+*{box-sizing:border-box;}
+html,body{
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  font-family:'Inter','Noto Sans KR',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg-page);
+}
+
+/* 이 페이지의 캔버스 */
+#canvas.notice-admin-update{
+  min-height:100vh;
+  background:transparent;
+}
+
+/* ================================
+   🎨 Hero + 겹치는 카드 레이아웃
+   ================================ */
+
+.hero{
+  width:100%;
+  background:linear-gradient(135deg,var(--hero-top),var(--hero-bot));
+  color:#fff;
+}
+.hero--notice{
+  padding:80px 0 110px;
+}
+.hero__inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.hero__title{
+  margin:0 0 8px;
+  font-size:48px;
+  line-height:1.2;
+  font-weight:600;
+  color:#ffffff;
+}
+.hero__subtitle{
+  margin:0;
+  font-size:16px;
+  line-height:1.5;
+  color:rgba(255,255,255,0.9);
+}
+
+/* 메인 레이아웃 */
+.notice-update-layout{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px 96px;
+  position:relative;
+  z-index:1;
+}
+
+/* 카드 공통 */
+.card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+}
+
+/* 공지 작성 카드 */
+.notice-update-card{
+  margin-top:-56px;
+  padding:24px 32px 28px;
+}
+.notice-update-card__header{
+  margin-bottom:16px;
+}
+.notice-update-card__title{
+  margin:0;
+  font-size:20px;
+  font-weight:600;
+  color:var(--ink);
+}
+
+/* ================================
+   폼 레이아웃 (공지/대상/제목)
+   ================================ */
+
+.notice-update-form{
+  margin:0;
+}
+
+.notice-update-row{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  margin-bottom:18px;
+}
+
+/* 라벨 */
+.field-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.field-group--grow{
+  flex:1 1 auto;
+}
+.field-label{
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+}
+
+/* 인풋/셀렉트 공통 */
+.field-control{
+  height:42px;
+  padding:0 12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-size:14px;
+  color:var(--ink);
+  font-family:inherit;
+}
+.field-input{
+  width:100%;
+}
+.field-select{
+  min-width:120px;
+}
+.field-control:focus{
+  outline:none;
+  border-color:var(--brand);
+  box-shadow:0 0 0 1px rgba(76,92,255,0.45);
+}
+
+/* ================================
+   에디터 영역 (툴바 + 본문)
+   ================================ */
+
+.editor-shell{
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  overflow:hidden;
+}
+
+/* 툴바 */
+.editor-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:4px 8px;
+  height:30px;
+  background:#FFFFFF;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+  color:var(--muted);
+}
+.editor-toolbar__left{
+  display:flex;
+  align-items:center;
+}
+.editor-toolbar__img{
+  display:block;
+  height:18px;
+  width:auto;
+}
+.editor-toolbar__right{
+  font-size:11px;
+  color:#9CA3AF;
+}
+
+/* 본문 텍스트 영역 */
+.editor-body{
+  display:block;
+  width:100%;
+  min-height:430px;
+  padding:12px;
+  border:none;
+  resize:vertical;
+  font-family:inherit;
+  font-size:14px;
+  line-height:1.5;
+  color:var(--ink);
+}
+.editor-body:focus{
+  outline:none;
+}
+
+/* ================================
+   하단 버튼
+   ================================ */
+
+.notice-update-footer{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:16px;
+}
+
+.btn-primary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:120px;
+  height:44px;
+  padding:0 24px;
+  border-radius:9999px;
+  border:none;
+  background:var(--brand);
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .05s ease, box-shadow .05s ease, filter .05s ease;
+}
+.btn-primary:hover{
+  filter:brightness(1.05);
+  box-shadow:0 10px 25px rgba(37,99,235,0.25);
+  transform:translateY(-1px);
+}
+.btn-primary:active{
+  transform:translateY(0);
+  box-shadow:none;
+}
+.notice-update__submit{
+  white-space:nowrap;
+}
+
+/* ================================
+   우측 세로 배너
+   ================================ */
+
+.support-banner{
+  box-sizing:border-box;
+  position:fixed;
+  width:71px;
+  height:320px;
+
+  /* 카드 오른쪽 + 여백 40px (카드 반폭 560px 기준) */
+  top:220px;
+  left:50%;
+  margin-left:calc(560px + 40px);
+
+  background:#FFFFFF;
+  border:0.5px solid rgba(0,0,0,0.78);
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 4px 10px;
+  z-index:1000;
+}
+
+/* 화면이 좁을 때는 오른쪽에 붙이기 */
+@media (max-width:1280px){
+  .support-banner{
+    left:auto;
+    margin-left:0;
+    right:16px;
+  }
+}
+
+.support-banner__item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:4px 0;
+  width:100%;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+}
+
+/* 아이콘 공통 */
+.support-banner__icon{
+  width:60px;
+  height:60px;
+  margin-bottom:2px;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  background-color:transparent;
+}
+
+.support-banner__icon--chat{
+  background-image:url("../img/icon_chatbot.png");
+}
+.support-banner__icon--phone{
+  background-image:url("../img/icon_phone.png");
+}
+.support-banner__icon--qna{
+  background-image:url("../img/icon_qna_1to1.png");
+}
+
+.support-banner__label{
+  font-family:'Poppins','Inter',system-ui,sans-serif;
+  font-size:14px;
+  line-height:16px;
+  text-align:center;
+  color:#000000;
+  white-space:nowrap;
+}

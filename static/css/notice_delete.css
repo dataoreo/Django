@@ -1,0 +1,142 @@
+/* ================================
+   DORO 기본 토큰
+   ================================ */
+:root{
+  --bg-page:#F9FAFB;
+  --ink:#111827;
+}
+
+/* base 패딩 간섭 제거 */
+.wrapper{ padding:0 !important; }
+
+*{ box-sizing:border-box; }
+html,body{
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  font-family:'Inter','Noto Sans KR',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg-page);
+}
+
+/* 이 페이지 캔버스 */
+#canvas.notice-delete-page{
+  min-height:100vh;
+}
+
+/* ================================
+   전체 오버레이 + 모달
+   ================================ */
+
+/* 화면 어둡게 */
+.notice-delete-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,0.45);  /* 살짝 어둡게 */
+  z-index:1900;
+}
+
+/* 중앙 카드 */
+.notice-delete-modal{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:278px;
+  height:236px;
+  box-sizing:border-box;
+  background:#FFFFFF;
+  border:0.5px solid #2600FF;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+  border-radius:10px;
+
+  z-index:1910;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+
+/* 빨간 동그라미 느낌표 */
+.notice-delete-icon-circle{
+  box-sizing:border-box;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:rgba(255,0,4,0.78);
+  border:1px solid rgba(255,63,66,0.78);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+
+.notice-delete-icon-mark{
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:700;
+  font-size:24px;
+  line-height:29px;
+  color:#FFFFFF;
+  text-shadow:2px 2px 5px rgba(0,0,0,0.25);
+}
+
+/* "정말 삭제 하시겠습니까?" */
+.notice-delete-title{
+  margin:0;
+  font-family:'Poppins','Inter',system-ui,sans-serif;
+  font-weight:700;
+  font-size:14px;
+  line-height:21px;
+  text-align:center;
+  color:#000000;
+}
+
+/* 폼 + 버튼 정렬 */
+.notice-delete-form{
+  margin:0;
+  width:100%;
+}
+
+.notice-delete-actions{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+}
+
+/* 공통 버튼 스타일 */
+.notice-delete-btn{
+  width:64px;
+  height:28px;
+  border:none;
+  border-radius:5px;
+  font-family:'Poppins','Inter',system-ui,sans-serif;
+  font-weight:700;
+  font-size:12px;
+  line-height:16px;
+  color:#FFFFFF;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
+
+/* 예 (파란색) */
+.notice-delete-btn--yes{
+  background:#2600FF;
+}
+
+/* 아니요 (빨간색) */
+.notice-delete-btn--no{
+  background:rgba(255,0,4,0.78);
+}
+
+/* 화면이 좁아질 때도 중앙 유지 */
+@media (max-width:768px){
+  .notice-delete-modal{
+    width:240px;
+    height:220px;
+  }
+}

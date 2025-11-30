@@ -215,6 +215,29 @@ form > .errorlist { /* non_field_errors */
   font-weight: 600;
 }
 
+.messages {
+  margin-bottom: 20px;
+}
+
+.alert {
+  padding: 10px 14px;
+  border-radius: var(--radius-input);
+  font-size: 14px;
+}
+
+/* error 기본 스타일 (message.tags == "error" 등) */
+.alert-error,
+.alert-danger {
+  background: rgba(239, 68, 68, 0.05);  /* var(--err) 연한 버전 */
+  border: 1px solid var(--err);
+  color: var(--err);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(76, 92, 255, 0.35);
+  outline-offset: 2px;
+}
+
 /* * 📱 5️⃣ 반응형 가이드
  */
 @media (max-width: 768px) {

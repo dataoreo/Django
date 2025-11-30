@@ -4,7 +4,9 @@
 {% block title %}계정 탈퇴 | DORO LMS{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/mypage_delete.css' %}">
+  {# 마이페이지 공통 레이아웃 + 탈퇴 전용 카드 스타일 #}
+  <link rel="stylesheet" href="{% static 'css/mypage.css' %}?v=20251128_2">
+  <link rel="stylesheet" href="{% static 'css/mypage_delete.css' %}?v=20251128_1">
 {% endblock %}
 
 {% block content %}
@@ -18,17 +20,25 @@
   <div id="menuBox"></div>
   <div id="menuLine1"></div>
   <div id="menuLine2"></div>
-  <div id="menuItem1">내 정보</div>
-  <div id="menuItem2">DIMC 진단결과</div>
+  <a id="menuItem1" href="{% url 'user:mypage' %}">내 정보</a>
+  <a id="menuItem2" href="{% url 'user:DIMC_archive' %}">DIMC 아카이브</a>
 
-  <!-- 우측 확인 박스 (카드 폭/좌표 동일) -->
+  <!-- 우측 확인 박스 -->
   <section id="confirmBox" aria-describedby="confirmDesc">
+    <div class="icon-wrap" aria-hidden="true">
+      <div class="icon-circle">
+        <span class="icon-mark">!</span>
+      </div>
+    </div>
+
     <h2 class="confirmTitle">정말 탈퇴하시겠습니까?</h2>
     <p id="confirmDesc" class="confirmText">
       이 작업은 되돌릴 수 없습니다. 계정과 관련된 데이터가 서비스 정책에 따라 삭제되거나 익명화됩니다.
     </p>
+
     <div class="confirmActions">
-      <a class="btn" href="{% url 'user:mypage' %}">취소</a>
+      <a class="btn cancel" href="{% url 'user:mypage' %}">취소</a>
+
       <form method="post" action="{% url 'user:mypage_delete' %}">
         {% csrf_token %}
         <button type="submit" class="btn danger">탈퇴</button>
@@ -37,4 +47,3 @@
   </section>
 </div>
 {% endblock %}
-

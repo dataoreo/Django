@@ -1,64 +1,166 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ notice.title }} | DORO LMS{% endblock %}
+{% block title %}공지 상세 | DORO LMS{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/notice_detail.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <div class="hero-inner">
-    <h1 class="hero-title">공지사항</h1>
-  </div>
-</section>
+<div id="canvas" class="notice-detail">
 
-<main class="card-wrap">
-  <div class="card-inner">
+  <!-- Hero 영역 -->
+  <section class="hero hero--notice">
+    <div class="hero__inner">
+      <h1 class="hero__title">공지사항</h1>
+      <p class="hero__subtitle">
+        관리자 공지 상세 확인 화면입니다. 등록된 공지의 내용을 확인하고 수정·삭제할 수 있습니다.
+      </p>
+    </div>
+  </section>
 
-    <article style="max-width: 900px; margin: 0 auto;">
+  <!-- 메인 카드 -->
+  <main class="notice-detail-layout" role="main" aria-label="공지 상세">
+    <section class="notice-detail-card card">
 
-      <!-- 제목 -->
-      <header style="border-bottom: 2px solid #dee2e6; padding-bottom: 20px; margin-bottom: 20px;">
-        {% if notice.is_pinned %}
-        <span style="display: inline-block; padding: 4px 10px; background-color: #dc3545; color: white; font-size: 12px; font-weight: bold; border-radius: 3px; margin-bottom: 10px;">
-          📌 공지
-        </span>
-        {% endif %}
-        <h2 style="margin: 10px 0; font-size: 24px; font-weight: 600;">{{ notice.title }}</h2>
+      <!-- 상단 타입/대상/제목 + 목록 버튼 -->
+      <header class="notice-detail-card__top">
+        <div class="notice-detail-top__left">
+          <div class="notice-detail-badges">
+            <!-- 타입 뱃지 (공지 / 점검 등은 지금은 고정 텍스트) -->
+            <span class="notice-detail-badge notice-detail-badge--type">공지</span>
 
-        <div style="display: flex; gap: 20px; color: #6c757d; font-size: 14px; margin-top: 15px;">
-          <span>👤 {{ notice.author.name }}</span>
-          <span>📅 {{ notice.created_at|date:"Y년 m월 d일 H:i" }}</span>
-          <span>👁️ 조회수 {{ notice.views }}</span>
+            <!-- 대상 뱃지: 전체 고정 (필요하면 나중에 필드 붙이면 됨) -->
+            <span class="notice-detail-badge notice-detail-badge--role">전체</span>
+          </div>
+
+          <h2 class="notice-detail-title">
+            {{ notice.title }}
+          </h2>
+        </div>
+
+        <div class="notice-detail-top__right">
+          <a href="{% url 'board:notice_list' %}"
+             class="notice-detail-btn-list">
+            목록
+          </a>
         </div>
       </header>
 
-      <!-- 내용 -->
-      <div style="line-height: 1.8; padding: 30px 0; min-height: 300px; white-space: pre-wrap;">
-        {{ notice.content }}
+      <!-- 작성자 / 작성일 / 조회수 줄 -->
+      <div class="notice-detail-card__meta">
+        <div class="notice-detail-meta__left">
+          <span class="notice-detail-meta__label">작성자:</span>
+          <span class="notice-detail-meta__value">
+            {{ notice.author.email }}
+          </span>
+        </div>
+        <div class="notice-detail-meta__right">
+          <span>작성일: {{ notice.created_at|date:"Y-m-d H:i" }}</span>
+          <span>조회수: {{ notice.views }}</span>
+        </div>
       </div>
 
-      <!-- 하단 버튼 -->
-      <footer style="border-top: 1px solid #dee2e6; padding-top: 20px; margin-top: 40px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <a href="{% url 'board:notice_list' %}" style="display: inline-block; padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
-            ← 목록으로
-          </a>
-
-          <!-- 작성자 본인만 수정/삭제 -->
-          {% if request.user == notice.author %}
-          <div style="display: flex; gap: 10px;">
-            <a href="{% url 'board:notice_update' notice.notice_id %}" style="display: inline-block; padding: 10px 20px; background-color: #0d6efd; color: white; text-decoration: none; border-radius: 5px;">
-              ✏️ 수정
-            </a>
-            <a href="{% url 'board:notice_delete' notice.notice_id %}" style="display: inline-block; padding: 10px 20px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;">
-              🗑️ 삭제
-            </a>
-          </div>
-          {% endif %}
+      <!-- 본문 -->
+      <div class="notice-detail-card__body">
+        <div class="notice-detail-body__box">
+          {{ notice.content|linebreaksbr }}
         </div>
+      </div>
+
+      <!-- 하단 버튼(삭제/수정) -->
+      <footer class="notice-detail-card__actions">
+        <!-- 삭제: POST로 delete view 호출 -->
+        <form method="post"
+              action="{% url 'board:notice_delete' notice.notice_id %}"
+              class="notice-detail-delete-form">
+          {% csrf_token %}
+          <button type="button"
+                  class="notice-detail-btn notice-detail-btn--danger"
+                  id="btn-open-delete">
+            삭제
+          </button>
+        </form>
+
+        <!-- 수정: update 화면으로 이동 -->
+        <a href="{% url 'board:notice_update' notice.notice_id %}"
+           class="notice-detail-btn notice-detail-btn--primary">
+          수정
+        </a>
       </footer>
 
-    </article>
+    </section>
 
-  </div>
-</main>
+    <!-- =======================
+         삭제 확인 팝업 (중앙)
+         ======================= -->
+    <div class="notice-delete-layer"
+         id="notice-delete-layer"
+         aria-hidden="true">
+      <div class="notice-delete-dialog">
+        <div class="notice-delete-icon-circle">
+          <span class="notice-delete-icon-mark">!</span>
+        </div>
+
+        <p class="notice-delete-text notice-delete-text--line1">정말</p>
+        <p class="notice-delete-text notice-delete-text--line2">삭제 하시겠습니까?</p>
+
+        <div class="notice-delete-buttons">
+          <button type="button"
+                  class="notice-delete-btn notice-delete-btn--yes"
+                  id="notice-delete-yes">
+            예
+          </button>
+          <button type="button"
+                  class="notice-delete-btn notice-delete-btn--no"
+                  id="notice-delete-no">
+            아니요
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 삭제 팝업 제어 스크립트 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const openBtn   = document.getElementById('btn-open-delete');
+      const layer     = document.getElementById('notice-delete-layer');
+      const yesBtn    = document.getElementById('notice-delete-yes');
+      const noBtn     = document.getElementById('notice-delete-no');
+      const deleteForm = document.querySelector('.notice-detail-delete-form');
+
+      if (!openBtn || !layer || !yesBtn || !noBtn || !deleteForm) {
+        return;
+      }
+
+      function openLayer() {
+        layer.classList.add('is-visible');
+        layer.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeLayer() {
+        layer.classList.remove('is-visible');
+        layer.setAttribute('aria-hidden', 'true');
+      }
+
+      openBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openLayer();
+      });
+
+      yesBtn.addEventListener('click', function () {
+        // 실제 삭제 POST
+        deleteForm.submit();
+      });
+
+      noBtn.addEventListener('click', function () {
+        closeLayer();
+      });
+    });
+  </script>
+
+</div>
 {% endblock %}
