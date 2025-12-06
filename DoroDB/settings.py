@@ -161,12 +161,12 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'semiexpansible-lawana-statolithic.ngrok-free.dev',  # 👈 ngrok 도메인 추가
+    'uncubical-minerva-unparochially.ngrok-free.dev',  # 👈 ngrok 도메인 추가
 
 ]
-SITE_DOMAIN = 'semiexpansible-lawana-statolithic.ngrok-free.dev'
+SITE_DOMAIN = 'uncubical-minerva-unparochially.ngrok-free.dev'
 
-CSRF_TRUSTED_ORIGINS = ['https://semiexpansible-lawana-statolithic.ngrok-free.dev']
+CSRF_TRUSTED_ORIGINS = ['https://uncubical-minerva-unparochially.ngrok-free.dev']
 # CSRF 보안 설정
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
